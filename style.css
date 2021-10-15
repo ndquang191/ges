@@ -1,0 +1,93 @@
+:root {
+    --color-1 : #041853;
+    --color-2 : #DAE8E8;
+    --color-3 : #348587;
+
+}
+*{
+    box-sizing: border-box;
+    border-width: 2px black;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-image: url(/img/background.png);
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    background-size: auto ;
+    height : 100%;
+    background-position: center center;
+
+    min-height: 100vh;
+}
+
+.main{
+    width: 1300px;
+    height: 700px;
+    background-color: burlywood;
+    border : solid 2px black;
+}
+
+/* Login collumn */
+
+.left-col{
+    height: 100%;
+    background-color: var(--color-2);
+    padding : 0px 40px !important;
+    padding-top : 150px !important;
+    /* border-right : solid 2px black; */
+}
+.login-box h1{
+    font-size : 50px;
+    font-weight: bold;
+    color: var(--color-1);
+}
+.login-box input{
+    margin-top : 20px;
+}
+.login-box a{
+    text-decoration-line: none;
+}
+
+.login-box .btn > a{
+    color: var(--color-2) !important;
+}
+.login-box .btn{
+    margin-top : 40px;
+    margin-bottom : 10px;
+    width: 100px;
+    height: 70px;
+    border-radius: 7%;
+    margin-left : auto;
+    margin-right : auto;
+    background-color: var(--color-1);
+}
+
+.login-box a{
+    color: var(--color-3);
+}
+
+.right-col{
+    background-image: url(img/login.jpg);
+    background-size: 100%;
+    background-position: center ;
+}
+
+
+
+/* Modal-footer */
+
+.modal-footer .btn{
+    align-content: flex-end;
+    margin-top : 10px;
+    margin-bottom : 10px;
+    width: 100px;
+    height: 50px;
+    border-radius: 7%;
+    background-color: var(--color-1);
+}
