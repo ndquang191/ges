@@ -33,3 +33,5 @@ search.addEventListener("search", (ev) => {
     history.pushState(null, null, value ? "?q=" + value : "/");
     observer.notify("render homepage");
 });
+
+
