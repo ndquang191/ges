@@ -1,3 +1,7 @@
 1. Khi thêm tài khoản sẽ bị undefined . Không so sánh được pass vs username
 
 2. Đoạn kiểm tra lớp học để thêm vào làm hơi ngu ()
+
+
+3. Làm thế nào để update bên Table liên tục
+

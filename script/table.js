@@ -157,9 +157,6 @@ switchButton.addEventListener("click",function(){
 
 class Row extends React.Component{
 
-
-   
-
     render(){
         return(
             <tr>
@@ -281,8 +278,29 @@ class TableBody extends React.Component{
 
 class Table extends React.Component{
 
+    state = {
+        classList : [
+
+        ]
+    }
+
+    // handleChange = () =>{
+        
+    //     function update(){
+    //         this.setState({
+    //             classList : JSON.parse(localStorage.getItem("classList"))
+    //         })
+    //     }
+
+    //     document.getElementById("addClass").addEventListener("click",update())
+    //     document.getElementById("deleteClass").addEventListener("click",update())
+
+    // }
+
     render(){
-        console.log(JSON.parse(localStorage.getItem("class")));
+        
+        // this.setState({ classList : JSON.parse(localStorage.getItem("classList")) } );
+        console.log(this.state.classList);
         return(
             <table>
                 <thead>
@@ -314,7 +332,7 @@ const ClassForm =({handleSubmit}) => {
     return(
         <form  class="search-box" onSubmit={handleSubmit}>  
             <input class="search-txt" type="text" name="class" id="class" placeholder="Add class"></input>
-            <button class="btn btn-outline-primary" href="#" type="submit">+</button>
+            <button id="addClass" class="btn btn-outline-primary" href="#" type="submit">+</button>
         </form>
     )
 }
@@ -325,7 +343,7 @@ const ClassComponent = ({handleDelte,name}) => {
     return(
         <div className="class">
             <p>{name}</p>
-            <button onClick={ () => handleDelte(name) } ><i class="bi bi-trash"></i></button>
+            <button id="deleteClass" class="btn btn-outline-primary" onClick={ () => handleDelte(name) } ></button>
         </div>
     )
 }
@@ -380,7 +398,7 @@ class ClassList extends React.Component{
                 classList : newClassList
             })
 
-            localStorage.setItem("class", JSON.stringify(this.state.classList))
+            localStorage.setItem("classList", JSON.stringify(newClassList))
                 
         }
     }
@@ -393,6 +411,9 @@ class ClassList extends React.Component{
         this.setState({
             classList : newClassList    
         })       
+
+        localStorage.setItem("classList", JSON.stringify(newClassList))
+
 
     }
 
