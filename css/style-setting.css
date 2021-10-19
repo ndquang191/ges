@@ -89,20 +89,18 @@ body{
 
 .search-txt{
     padding-left: 10px;
-    width: 240px;
+    width: 226px;
     height: 40px;
     border: 2px solid var(--color-1);
-    vertical-align: middle 
-
-
-}
-
-i{
-    font-size: 32px !important;
-    vertical-align: middle ;
-    color: var(--color-3);
+    vertical-align: middle;
+    margin-right: 10px;
 
 }
+
+.search-box .btn{
+    font-size: 15px;
+}
+
 
 .cls-list {
     margin-top: 20px;

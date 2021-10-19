@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G.E.S - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
@@ -27,7 +27,7 @@
 
                 <button  type="submit" class="btn btn-primary login-button"><a id="login" onclick="check()" href="#">Login</a></button>
 
-                <a href="#" class="text-center">Forgot Password?</a>
+                <a id="forgotpass" href="#" class="text-center">Forgot Password?</a>
                 <a class="text-center" type="button" data-bs-toggle="modal" data-bs-target="#modal">New account</a>
 
                 <!-- Modal -->
@@ -105,7 +105,7 @@
                                     Cancel
                                 </button>
                                 <button
-                                    onclick="add()"
+                                    id="addNewUser"
                                     form="student"
                                     type="submit"
                                     class="btn btn-primary"
@@ -130,6 +130,6 @@
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script src="script/index.js"></script>
 </body>
 </html>
