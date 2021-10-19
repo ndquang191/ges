@@ -1,7 +1,9 @@
 1. Khi thêm tài khoản sẽ bị undefined . Không so sánh được pass vs username
 
-2. Đoạn kiểm tra lớp học để thêm vào làm hơi ngu ()
+2. Đoạn kiểm tra lớp học để thêm vào làm hơi ngu () -- bỏ qua được
 
+3. Làm thế nào để update bên Table khi bên nút thêm và nút xóa bên ClassList được bấm 
+    = update localStorage bên Table
 
-3. Làm thế nào để update bên Table liên tục
+4. Nút switch dùng để thay đổi cột thời  gian ( Tiết học / Thời gian học) - (Tiết 1 / 7h-7h55 )
 

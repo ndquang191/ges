@@ -142,7 +142,10 @@ let classes = [
     }
 ]
 
+// NÚT ĐỔI THỜI GIAN
+
 let switchButton = document.getElementById("switch")
+
 switchButton.addEventListener("click",function(){
     
     if(this.value == "true"){
@@ -150,9 +153,6 @@ switchButton.addEventListener("click",function(){
     }else{
         switchButton.value = "true"
     }
-
-    console.log(switchButton.value);
-
 })
 
 class Row extends React.Component{
@@ -264,12 +264,17 @@ class TableBody extends React.Component{
 
     render(){
         
-        this.mergeSchedule(this.props.classes)
-        console.log(switchButton.value);
         return(
             <tbody>
-                {this.state.schedule.map((lession,index) => 
-                    <Row key={index} stt={index} time={this.timeType(index)} lession={lession} />
+                {this.state.schedule.map((lession,index) => {
+
+                    if (switchButton.value == "true"){
+                       return <Row key={index} stt={index} time={this.state.scheduleTime[index]} lession={lession} />
+                    }
+                    else{
+                        return <Row key={index} stt={index} time={this.state.scheduleTime2[index]} lession={lession} />
+                    }
+                }
                 )}
             </tbody>
         )
@@ -284,21 +289,20 @@ class Table extends React.Component{
         ]
     }
 
-    // handleChange = () =>{
+  
         
-    //     function update(){
-    //         this.setState({
-    //             classList : JSON.parse(localStorage.getItem("classList"))
-    //         })
-    //     }
+    // update = () => {
 
-    //     document.getElementById("addClass").addEventListener("click",update())
-    //     document.getElementById("deleteClass").addEventListener("click",update())
-
+    //     this.setState({
+    //         classList : JSON.parse(localStorage.getItem("classList"))
+    //     })
     // }
 
+
+
     render(){
-        
+        // document.getElementById("addClass").addEventListener("click",<Tableupdate())
+        // document.getElementById("deleteClass").addEventListener("click",update())
         // this.setState({ classList : JSON.parse(localStorage.getItem("classList")) } );
         console.log(this.state.classList);
         return(
