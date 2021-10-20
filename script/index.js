@@ -62,9 +62,9 @@ function check(){
         }
 
     }
-    // if(login === false){
-    //     alert("Ban da nhap sai tai khoan")
-    // }
+    if(login === false){
+        alert("Ban da nhap sai tai khoan")
+    }
 
 }
 
