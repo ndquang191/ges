@@ -398,36 +398,36 @@ class Body extends React.Component {
 		});
 	};
 
-	nameScheduleTime = (list) => {
-		let scheduleNew = [
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-			[, , , , , , ,],
-		];
+	// nameScheduleTime = (list) => {
+	// 	let scheduleNew = [
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 		[, , , , , , ,],
+	// 	];
 
-		for (let i in list) {
-			let ar = classes.find((x) => x.id === list[i]).schedule;
+	// 	for (let i in list) {
+	// 		let ar = classes.find((x) => x.id === list[i]).schedule;
 
-			for (let row in ar) {
-				for (let cell = 0; cell < 7; cell++) {
-					if (ar[row][cell] === 1) {
-						scheduleNew[row][cell] = list[i];
-					}
-				}
-			}
-		}
+	// 		for (let row in ar) {
+	// 			for (let cell = 0; cell < 7; cell++) {
+	// 				if (ar[row][cell] === 1) {
+	// 					scheduleNew[row][cell] = list[i];
+	// 				}
+	// 			}
+	// 		}
+	// 	}
 
-		return scheduleNew;
-	};
+	// 	return scheduleNew;
+	// };
 
 	handleDelete = (nameClass) => {
 		const newClassList = this.state.classList.filter(
@@ -457,7 +457,7 @@ class Body extends React.Component {
 
 	render() {
 		this.state.classList = JSON.parse(localStorage.getItem("classList"));
-		let s = this.nameScheduleTime(this.state.classList);
+		let s = JSON.parse(localStorage.getItem("schedule"))
 
 		return (
 			<div class="body row ">

@@ -33,7 +33,7 @@ let classes = [
 			[0, 0, 1, 0, 0, 0, 0],
 		],
 	},
-    {
+	{
 		id: "TOAN-3",
 		schedule: [
 			[1, 0, 0, 0, 0, 0, 0],
@@ -158,38 +158,34 @@ let classes = [
 ];
 
 class TableRow extends React.Component {
+	state = {
+		time: [
+			"7:00-7:50",
+			"7:55-8:45",
+			"8:50-9:40",
+			"9:45-10:35",
+			"10:40-11:30",
+			"11:35-12:20",
+			"12:55-13:45",
+			"13:50-14:40",
+			"14:45-15:35",
+			"15:40-16:30",
+			"16:35-17:25",
+			"17:30-18:20",
+		],
+	};
 
-    state = {
-        time : [
-            "7:00-7:50",
-            "7:55-8:45",
-            "8:50-9:40",
-            "9:45-10:35",
-            "10:40-11:30",
-            "11:35-12:20",
-            "12:55-13:45",
-            "13:50-14:40",
-            "14:45-15:35",
-            "15:40-16:30",
-            "16:35-17:25",
-            "17:30-18:20",
-       
-        ]
-
-    }
-
-    chooseTime = (showTime,index) => {
-        if(showTime === true){
-            return ( <th>{this.state.time[index]}</th>)
-        }
-        else{
-            return( <th>Tiết {index+1}</th> )
-        }
-    }
+	chooseTime = (showTime, index) => {
+		if (showTime === true) {
+			return <th>{this.state.time[index]}</th>;
+		} else {
+			return <th>Tiết {index + 1}</th>;
+		}
+	};
 	render() {
 		return (
 			<tr>
-				{this.chooseTime(this.props.showTime,this.props.index)}
+				{this.chooseTime(this.props.showTime, this.props.index)}
 				<td>{this.props.lession[0]}</td>
 				<td>{this.props.lession[1]}</td>
 				<td>{this.props.lession[2]}</td>
@@ -203,10 +199,7 @@ class TableRow extends React.Component {
 }
 
 class TableBody extends React.Component {
-
-  
-   
- 	render() {
+	render() {
 		return (
 			<tbody>
 				{this.props.scheduleTime.map((lession, index) => (
@@ -214,7 +207,7 @@ class TableBody extends React.Component {
 						lession={lession}
 						key={index}
 						index={index}
-                        showTime={this.props.showTime}
+						showTime={this.props.showTime}
 					/>
 				))}
 			</tbody>
@@ -244,7 +237,7 @@ class Table extends React.Component {
 						<TableBody
 							classList={this.props.classList}
 							scheduleTime={this.props.scheduleTime}
-                            showTime={this.props.showTime}
+							showTime={this.props.showTime}
 						/>
 					</table>
 				</div>
@@ -261,7 +254,9 @@ class ClassComponent extends React.Component {
 				<button
 					id="deleteClass"
 					class="btn btn-outline-primary"
-					onClick={() => this.props.handleDelete(this.props.className)}
+					onClick={() =>
+						this.props.handleDelete(this.props.className)
+					}
 				></button>
 			</div>
 		);
@@ -300,7 +295,10 @@ class ClassListContainer extends React.Component {
 
 				<div id="cls-list" className="cls-list">
 					{this.props.classList.map((className) => (
-						<ClassComponent className={className}  handleDelete={this.props.handleDelete}/>
+						<ClassComponent
+							className={className}
+							handleDelete={this.props.handleDelete}
+						/>
 					))}
 				</div>
 			</div>
@@ -313,7 +311,7 @@ class RightBar extends React.Component {
 		return (
 			<div class="col-1 r-col">
 				<button
-                    onClick={this.props.handleChange}
+					onClick={this.props.handleChange}
 					class="btn btn-outline-primary"
 					id="switch"
 					value="true"
@@ -328,66 +326,62 @@ class RightBar extends React.Component {
 
 class Body extends React.Component {
 	state = {
-		classList: ["TOAN-1", "TOAN-2", "CNPM-1"],
+		classList: [],
 		showTime: false,
 
 		scheduleTime: [
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
 		],
 	};
 
-    handleChange = () =>{
+	handleChange = () => {
+		let newShowTime = !this.state.showTime;
+		this.setState({
+			showTime: newShowTime,
+		});
+	};
 
-        let newShowTime = !this.state.showTime
-        this.setState({
-            showTime : newShowTime
-        })
-    }
+	nameScheduleTime = (list) => {
+		let scheduleNew = [
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+		];
 
-    nameScheduleTime = (list) =>{
+		for (let i in list) {
+			let ar = classes.find((x) => x.id === list[i]).schedule;
 
-        let scheduleNew = [
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-		]
+			for (let row in ar) {
+				for (let cell = 0; cell < 7; cell++) {
+					if (ar[row][cell] === 1) {
+						scheduleNew[row][cell] = list[i];
+					}
+				}
+			}
+		}
 
-        for(let i in list){
-
-            let ar = classes.find( (x) => x.id === list[i]).schedule
-
-            for( let row in ar){
-                for(let cell = 0; cell < 7 ; cell++){
-                    if( ar[row][cell] === 1 ){
-                        scheduleNew[row][cell] = list[i]
-                    }
-                }
-            }
-
-        }
-
-        return scheduleNew   
-    }
+		return scheduleNew;
+	};
 
 	handleDelete = (nameClass) => {
 		const newClassList = this.state.classList.filter(
@@ -418,7 +412,7 @@ class Body extends React.Component {
 		if (flag == false) {
 			alert(noti);
 		}
-		if ((flag == true)) {
+		if (flag == true) {
 			const newClassList = [...this.state.classList, newClass];
 
 			this.setState({
@@ -428,10 +422,8 @@ class Body extends React.Component {
 	};
 
 	render() {
-
-
-        let s = this.nameScheduleTime(this.state.classList)
-
+		let s = this.nameScheduleTime(this.state.classList);
+		console.log(s);
 		return (
 			<div class="body row ">
 				<ClassListContainer
@@ -443,12 +435,15 @@ class Body extends React.Component {
 				<Table
 					classList={this.state.classList}
 					scheduleTime={s}
-                    showTime={this.state.showTime}
+					showTime={this.state.showTime}
 				/>
-				<RightBar handleChange={this.handleChange}/>
-				{localStorage.setItem("classList",JSON.stringify(this.state.classList))}
-				
-			</div>	
+				<RightBar handleChange={this.handleChange} />
+				{localStorage.setItem(
+					"classList",
+					JSON.stringify(this.state.classList)
+				)}
+				{localStorage.setItem("schedule", JSON.stringify(s))}
+			</div>
 		);
 	}
 }
