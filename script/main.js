@@ -141,38 +141,34 @@ let classes = [
 ];
 
 class TableRow extends React.Component {
+	state = {
+		time: [
+			"7:00-7:50",
+			"7:55-8:45",
+			"8:50-9:40",
+			"9:45-10:35",
+			"10:40-11:30",
+			"11:35-12:20",
+			"12:55-13:45",
+			"13:50-14:40",
+			"14:45-15:35",
+			"15:40-16:30",
+			"16:35-17:25",
+			"17:30-18:20",
+		],
+	};
 
-    state = {
-        time : [
-            "7:00-7:50",
-            "7:55-8:45",
-            "8:50-9:40",
-            "9:45-10:35",
-            "10:40-11:30",
-            "11:35-12:20",
-            "12:55-13:45",
-            "13:50-14:40",
-            "14:45-15:35",
-            "15:40-16:30",
-            "16:35-17:25",
-            "17:30-18:20",
-       
-        ]
-
-    }
-
-    chooseTime = (showTime,index) => {
-        if(showTime === true){
-            return ( <th>{this.state.time[index]}</th>)
-        }
-        else{
-            return( <th>Tiết {index+1}</th> )
-        }
-    }
+	chooseTime = (showTime, index) => {
+		if (showTime === true) {
+			return <th>{this.state.time[index]}</th>;
+		} else {
+			return <th>Tiết {index + 1}</th>;
+		}
+	};
 	render() {
 		return (
 			<tr>
-				{this.chooseTime(this.props.showTime,this.props.index)}
+				{this.chooseTime(this.props.showTime, this.props.index)}
 				<td>{this.props.lession[0]}</td>
 				<td>{this.props.lession[1]}</td>
 				<td>{this.props.lession[2]}</td>
@@ -186,10 +182,7 @@ class TableRow extends React.Component {
 }
 
 class TableBody extends React.Component {
-
-  
-   
- 	render() {
+	render() {
 		return (
 			<tbody>
 				{this.props.scheduleTime.map((lession, index) => (
@@ -197,7 +190,7 @@ class TableBody extends React.Component {
 						lession={lession}
 						key={index}
 						index={index}
-                        showTime={this.props.showTime}
+						showTime={this.props.showTime}
 					/>
 				))}
 			</tbody>
@@ -227,7 +220,7 @@ class Table extends React.Component {
 						<TableBody
 							classList={this.props.classList}
 							scheduleTime={this.props.scheduleTime}
-                            showTime={this.props.showTime}
+							showTime={this.props.showTime}
 						/>
 					</table>
 				</div>
@@ -239,10 +232,9 @@ class Table extends React.Component {
 class ClassComponent extends React.Component {
 	render() {
 		return (
-			
-			<button class="btn btn-outline-primary class text-center">{this.props.groupName}</button>
-				
-			
+			<button class="btn btn-outline-primary class text-center">
+				{this.props.groupName}
+			</button>
 		);
 	}
 }
@@ -271,33 +263,88 @@ class ClassForm extends React.Component {
 	}
 }
 
-class GroupNav extends React.Component{
+class GroupNav extends React.Component {
+	render() {
+		return (
+			<div class="group-nav">
+				<button class="btn btn-outline-primary">Del</button>
+				<button class="btn btn-outline-primary mid">Home</button>
+				<button
+					type="button"
+					class="btn btn-outline-primary"
+					data-bs-toggle="modal"
+					data-bs-target="#exampleModal"
+				>
+					Add
+				</button>
 
-    
+				<div
+					class="modal fade"
+					id="exampleModal"
+					tabindex="-1"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
+				>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5
+									class="modal-title"
+									id="exampleModalLabel"
+								>
+									Name your new group
+								</h5>
 
-    render(){
-
-        return(
-
-            <div class="group-nav">
-                <button class="btn btn-outline-primary">Del</button>
-                <button class="btn btn-outline-primary mid">Home</button>
-                <button class="btn btn-outline-primary">Add</button>
-            </div>
-        )
-    }
+								<button
+									type="button"
+									class="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Close"
+								></button>
+							</div>
+							<div class="modal-body">
+								<form
+									class="search-box"
+									onSubmit={this.props.handleSubmit}
+								>
+									<input
+										class="search-txt"
+										type="text"
+										name="class"
+										id="class"
+										placeholder="Your new group"
+									></input>
+									<button
+										id="addClass"
+										class="btn btn-outline-primary"
+										href="#"
+										type="submit"
+									>
+										+
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 class ClassListContainer extends React.Component {
 	render() {
-        console.log(this.props.groupList);
+		console.log(this.props.groupList);
 
-        return (
+		return (
 			<div class="col-3">
-                <GroupNav/>
+				<GroupNav handleSubmit={this.props.handleSubmit} />
 				<div id="cls-list" className="cls-list">
 					{this.props.groupList.map((groupName) => (
-						<ClassComponent groupName={groupName}  handleDelete={this.props.handleDelete}/>
+						<ClassComponent
+							groupName={groupName}
+							handleDelete={this.props.handleDelete}
+						/>
 					))}
 				</div>
 			</div>
@@ -310,7 +357,7 @@ class RightBar extends React.Component {
 		return (
 			<div class="col-1 r-col">
 				<button
-                    onClick={this.props.handleChange}
+					onClick={this.props.handleChange}
 					class="btn btn-outline-primary"
 					id="switch"
 					value="true"
@@ -327,64 +374,60 @@ class Body extends React.Component {
 	state = {
 		classList: ["TOAN-1", "TOAN-2", "CNPM-1"],
 		showTime: false,
-        groupList: ["Nhóm CNPM" , "Phòng ktx" , "SV tình nguyện"],
+		groupList: ["Nhóm CNPM", "Phòng ktx", "SV tình nguyện"],
 		scheduleTime: [
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
 		],
 	};
 
-    handleChange = () =>{
+	handleChange = () => {
+		let newShowTime = !this.state.showTime;
+		this.setState({
+			showTime: newShowTime,
+		});
+	};
 
-        let newShowTime = !this.state.showTime
-        this.setState({
-            showTime : newShowTime
-        })
-    }
+	nameScheduleTime = (list) => {
+		let scheduleNew = [
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+			[, , , , , , ,],
+		];
 
-    nameScheduleTime = (list) =>{
+		for (let i in list) {
+			let ar = classes.find((x) => x.id === list[i]).schedule;
 
-        let scheduleNew = [
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-			[,,,,,,,],
-		]
+			for (let row in ar) {
+				for (let cell = 0; cell < 7; cell++) {
+					if (ar[row][cell] === 1) {
+						scheduleNew[row][cell] = list[i];
+					}
+				}
+			}
+		}
 
-        for(let i in list){
-
-            let ar = classes.find( (x) => x.id === list[i]).schedule
-
-            for( let row in ar){
-                for(let cell = 0; cell < 7 ; cell++){
-                    if( ar[row][cell] === 1 ){
-                        scheduleNew[row][cell] = list[i]
-                    }
-                }
-            }
-
-        }
-
-        return scheduleNew   
-    }
+		return scheduleNew;
+	};
 
 	handleDelete = (nameClass) => {
 		const newClassList = this.state.classList.filter(
@@ -398,41 +441,28 @@ class Body extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const newClass = e.target.elements.class.value;
 
-		let flag = false;
-		let noti = "Chưa có lớp này trong hệ thống bạn ơii";
+		const newGroup = e.target.elements.class.value;
 
-		for (let i in classes) {
-			if (classes[i].id == newClass) {
-				flag = true;
-			}
-		}
-		if (this.state.classList.indexOf(newClass) != -1) {
-			flag = false;
-			noti = "Bạn chọn lớp này rồi bạn ơiii";
-		}
-		if (flag == false) {
-			alert(noti);
-		}
-		if ((flag == true)) {
-			const newClassList = [...this.state.classList, newClass];
+		console.log(newGroup);
 
-			this.setState({
-				classList: newClassList,
-			});
-		}
+        let newGroupList = [...this.state.groupList,newGroup]
+
+        console.log(newGroupList);
+
+        this.setState({
+            groupList : newGroupList
+        })
 	};
 
 	render() {
+		this.state.classList = JSON.parse(localStorage.getItem("classList"));
+		let s = this.nameScheduleTime(this.state.classList);
 
-        this.state.classList = JSON.parse(localStorage.getItem("classList"))
-        let s = this.nameScheduleTime(this.state.classList)
-        
 		return (
 			<div class="body row ">
 				<ClassListContainer
-                    groupList={this.state.groupList}
+					groupList={this.state.groupList}
 					classList={this.state.classList}
 					handleSubmit={this.handleSubmit}
 					handleDelete={this.handleDelete}
@@ -441,9 +471,9 @@ class Body extends React.Component {
 				<Table
 					classList={this.state.classList}
 					scheduleTime={s}
-                    showTime={this.state.showTime}
+					showTime={this.state.showTime}
 				/>
-				<RightBar handleChange={this.handleChange}/>
+				<RightBar handleChange={this.handleChange} />
 			</div>
 		);
 	}
@@ -470,7 +500,6 @@ class Leftbar extends React.Component {
 					class="btn btn-outline-primary active1"
 					href="main.html"
 					role="button"
-                    
 				>
 					<i class="bi bi-house "></i>
 				</a>

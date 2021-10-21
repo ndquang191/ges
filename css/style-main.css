@@ -108,6 +108,16 @@ body{
     width: 140px  !important;
 }
 
+input{
+    padding-left: 10px;
+    width: 250px;
+    height: 40px;
+    border: 2px solid var(--color-1);
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
 
 
 .cls-list {
