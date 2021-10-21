@@ -232,46 +232,46 @@ class Table extends React.Component {
 class ClassComponent extends React.Component {
 	render() {
 		return (
-			<button class="btn btn-outline-primary class text-center">
+			<button class="col-12 btn btn-outline-primary class text-center">
 				{this.props.groupName}
 			</button>
 		);
 	}
 }
 
-class ClassForm extends React.Component {
-	render() {
-		return (
-			<form class="search-box" onSubmit={this.props.handleSubmit}>
-				<input
-					class="search-txt"
-					type="text"
-					name="class"
-					id="class"
-					placeholder="Add class"
-				></input>
-				<button
-					id="addClass"
-					class="btn btn-outline-primary"
-					href="#"
-					type="submit"
-				>
-					+
-				</button>
-			</form>
-		);
-	}
-}
+// class ClassForm extends React.Component {
+// 	render() {
+// 		return (
+// 			<form class="search-box" onSubmit={this.props.handleSubmit}>
+// 				<input
+// 					class="search-txt"
+// 					type="text"
+// 					name="class"
+// 					id="class"
+// 					placeholder="Add class"
+// 				></input>
+// 				<button
+// 					id="addClass"
+// 					class="btn btn-outline-primary"
+// 					href="#"
+// 					type="submit"
+// 				>
+// 					+
+// 				</button>
+// 			</form>
+// 		);
+// 	}
+// }
 
 class GroupNav extends React.Component {
 	render() {
 		return (
-			<div class="group-nav">
-				<button class="btn btn-outline-primary">Del</button>
-				<button class="btn btn-outline-primary mid">Home</button>
+			<div class="group-nav row">
+				<button class="col btn btn-outline-primary">Del</button>
+				<button class="col btn btn-outline-primary mid">Home</button>
 				<button
 					type="button"
-					class="btn btn-outline-primary"
+					class="btn btn-outline-primary col"
 					data-bs-toggle="modal"
 					data-bs-target="#exampleModal"
 				>
@@ -339,7 +339,7 @@ class ClassListContainer extends React.Component {
 		return (
 			<div class="col-3">
 				<GroupNav handleSubmit={this.props.handleSubmit} />
-				<div id="cls-list" className="cls-list">
+				<div id="cls-list row" className="cls-list">
 					{this.props.groupList.map((groupName) => (
 						<ClassComponent
 							groupName={groupName}
