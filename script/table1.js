@@ -320,7 +320,7 @@ class RightBar extends React.Component {
 				>
 					Switch
 				</button>
-				<button class="btn btn-outline-primary">Delete All</button>
+				<button class="btn btn-outline-primary">Note</button>
 			</div>
 		);
 	}
@@ -429,8 +429,9 @@ class Body extends React.Component {
 
 	render() {
 
+
         let s = this.nameScheduleTime(this.state.classList)
-        
+
 		return (
 			<div class="body row ">
 				<ClassListContainer
@@ -445,7 +446,9 @@ class Body extends React.Component {
                     showTime={this.state.showTime}
 				/>
 				<RightBar handleChange={this.handleChange}/>
-			</div>
+				{localStorage.setItem("classList",JSON.stringify(this.state.classList))}
+				
+			</div>	
 		);
 	}
 }

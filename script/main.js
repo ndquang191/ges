@@ -426,7 +426,9 @@ class Body extends React.Component {
 
 	render() {
 
+        this.state.classList = JSON.parse(localStorage.getItem("classList"))
         let s = this.nameScheduleTime(this.state.classList)
+        
 		return (
 			<div class="body row ">
 				<ClassListContainer
