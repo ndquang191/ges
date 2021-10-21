@@ -315,9 +315,9 @@ class RightBar extends React.Component {
 					id="switch"
 					value="true"
 				>
-					Switch
+					Free Time
 				</button>
-				<button class="btn btn-outline-primary">Delete All</button>
+				<button class="btn btn-outline-primary">Same Class</button>
 			</div>
 		);
 	}
@@ -452,7 +452,7 @@ class Container extends React.Component {
 		return (
 			<div class="col-11 main-container">
 				<div class="banner">
-					<h2>Chỉnh sửa lịch</h2>
+					<h2>G.E.S</h2>
 				</div>
 				<Body />
 			</div>
