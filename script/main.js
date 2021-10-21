@@ -183,7 +183,6 @@ class TableRow extends React.Component {
 
 class TableBody extends React.Component {
 	render() {
-        console.log(this.props.scheduleTime);
 		return (
 			<tbody>
 				{this.props.scheduleTime.map((lession, index) => (
@@ -201,7 +200,7 @@ class TableBody extends React.Component {
 
 class Table extends React.Component {
 	render() {
-        console.log(this.props.scheduleTime);
+        
 		return (
 			<div class="col-8">
 				<div id="table" class="table">
@@ -336,7 +335,6 @@ class GroupNav extends React.Component {
 
 class ClassListContainer extends React.Component {
 	render() {
-		console.log(this.props.groupList);
 
 		return (
 			<div class="col-3">
@@ -416,9 +414,13 @@ class Body extends React.Component {
 	// 		[, , , , , , ,],
 	// 	];
 
-	// 	for (let i in list) {
-	// 		let ar = classes.find((x) => x.id === list[i]).schedule;
 
+	// 	for (let i in list) {
+
+	// 		let arb = classes.find((x) => x.id === list[i])
+    //         console.log(arb);
+    //         let ar = arb.schedule;
+    //         console.log(ar);
 	// 		for (let row in ar) {
 	// 			for (let cell = 0; cell < 7; cell++) {
 	// 				if (ar[row][cell] === 1) {
@@ -446,11 +448,8 @@ class Body extends React.Component {
 
 		const newGroup = e.target.elements.class.value;
 
-		console.log(newGroup);
-
         let newGroupList = [...this.state.groupList,newGroup]
 
-        console.log(newGroupList);
 
         this.setState({
             groupList : newGroupList
@@ -459,8 +458,8 @@ class Body extends React.Component {
 
 	render() {
 		this.state.classList = JSON.parse(localStorage.getItem("classList"));
-		let s = JSON.parse(localStorage.getItem("schedule"))
 
+		let s = JSON.parse(localStorage.getItem("schedule"));
 		return (
 			<div class="body row ">
 				<ClassListContainer

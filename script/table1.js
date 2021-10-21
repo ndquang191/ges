@@ -423,7 +423,6 @@ class Body extends React.Component {
 
 	render() {
 		let s = this.nameScheduleTime(this.state.classList);
-		console.log(s);
 		return (
 			<div class="body row ">
 				<ClassListContainer
@@ -442,7 +441,7 @@ class Body extends React.Component {
 					"classList",
 					JSON.stringify(this.state.classList)
 				)}
-				{localStorage.setItem("schedule", JSON.stringify(s))}
+				{localStorage.setItem("schedule",JSON.stringify(s))}
 			</div>
 		);
 	}
