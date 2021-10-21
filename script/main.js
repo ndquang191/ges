@@ -391,12 +391,12 @@ class Body extends React.Component {
 		],
 	};
 
-	handleChange = () => {
-		let newShowTime = !this.state.showTime;
-		this.setState({
-			showTime: newShowTime,
-		});
-	};
+	// handleChange = () => {
+	// 	let newShowTime = !this.state.showTime;
+	// 	this.setState({
+	// 		showTime: newShowTime,
+	// 	});
+	// };
 
 	// nameScheduleTime = (list) => {
 	// 	let scheduleNew = [
