@@ -3,6 +3,10 @@
     --color-2 : #DAE8E8;
     --color-3 : #348587;
 
+    
+}
+.btn:hover{
+    background-color: var(--color-3) !important;
 }
 *{
     box-sizing: border-box;

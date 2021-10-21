@@ -58,7 +58,6 @@ function check(){
 
             login = true;
             location = "main.html"
-            console.log("Dung tai khoan");
         }
 
     }

@@ -5,8 +5,9 @@
 
 }
 
-
-
+.btn:hover{
+    background-color: var(--color-3) !important;
+}
 *{
     box-sizing: border-box;
     border-width: 2px black;
@@ -19,6 +20,10 @@
     font-weight: bolder !important;
 }
 
+.main-container{
+    background-color: var(--color-2);
+}
+
 i{
     
     color: var(--color-1) !important;
@@ -27,7 +32,6 @@ i{
 .active1{
     background-color: var(--color-3) !important;
 }
-
 
 body{
     font-family: 'Poppins', sans-serif;
@@ -91,22 +95,22 @@ body{
 
 /* left-column */
 
-.navbar1{
-    width: 100%;
+.group-nav {
+    justify-content: space-between !important;
+}
+.group-nav .btn{
+    width: 70px;
+    margin-right: 10px;
 }
 
-.mid{
-    width: 152px;
+.btn.mid{
+    width: 140px  !important;
 }
 
-i{
-    font-size: 32px !important;
-    vertical-align: middle ;
-    color: var(--color-3);
 
-}
 
 .cls-list {
+    align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: var(--color-2);
@@ -119,8 +123,7 @@ i{
 
 .class{
     position: relative;
-    padding-top: 5px;
-    padding-left: 5px;
+    margin-left: 8px;
     border: 2px solid var(--color-1);
     margin-bottom: 5px;
     height: 45px;
@@ -128,23 +131,13 @@ i{
     font-weight: bolder;
 }
 
-.cls-list .btn{
-    display: block;
-    margin-bottom: 5px;
-    width: 100%;
+.class.btn{
+
+   display: block !important;
+   width: 315px !important;
 }
 
 
-.class i{
-    position: absolute;
-    right: 1px;
-    bottom: 4px;
-    font-size: 20px !important;
-    border: solid 2px var(--color-1);
-    vertical-align: middle;
-    margin-right: 5px;
-    margin-left: auto;
-}
 
 /* Table */
 
@@ -156,7 +149,7 @@ table{
 }
 
 th{
-    width: 150px;
+    width: 120px !important;
     height: 45px;
     border-collapse: collapse;
     border: 2px solid var(--color-1);
@@ -164,7 +157,7 @@ th{
 }
 
 td{
-    width: 150px;
+    width: auto;
     height: 45px; 
     border-collapse: collapse;
     border: 1px solid red;

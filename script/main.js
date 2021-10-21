@@ -239,14 +239,10 @@ class Table extends React.Component {
 class ClassComponent extends React.Component {
 	render() {
 		return (
-			<div class="class">
-				<p>{this.props.className}</p>
-				<button
-					id="deleteClass"
-					class="btn btn-outline-primary"
-					onClick={() => this.props.handleDelete(this.props.className)}
-				></button>
-			</div>
+			
+			<button class="btn btn-outline-primary class text-center">{this.props.groupName}</button>
+				
+			
 		);
 	}
 }
@@ -275,15 +271,33 @@ class ClassForm extends React.Component {
 	}
 }
 
+class GroupNav extends React.Component{
+
+    
+
+    render(){
+
+        return(
+
+            <div class="group-nav">
+                <button class="btn btn-outline-primary">Del</button>
+                <button class="btn btn-outline-primary mid">Home</button>
+                <button class="btn btn-outline-primary">Add</button>
+            </div>
+        )
+    }
+}
+
 class ClassListContainer extends React.Component {
 	render() {
-		return (
-			<div class="col-3">
-				<ClassForm handleSubmit={this.props.handleSubmit} />
+        console.log(this.props.groupList);
 
+        return (
+			<div class="col-3">
+                <GroupNav/>
 				<div id="cls-list" className="cls-list">
-					{this.props.classList.map((className) => (
-						<ClassComponent className={className}  handleDelete={this.props.handleDelete}/>
+					{this.props.groupList.map((groupName) => (
+						<ClassComponent groupName={groupName}  handleDelete={this.props.handleDelete}/>
 					))}
 				</div>
 			</div>
@@ -313,7 +327,7 @@ class Body extends React.Component {
 	state = {
 		classList: ["TOAN-1", "TOAN-2", "CNPM-1"],
 		showTime: false,
-
+        groupList: ["Nhóm CNPM" , "Phòng ktx" , "SV tình nguyện"],
 		scheduleTime: [
 			[,,,,,,,],
 			[,,,,,,,],
@@ -413,10 +427,10 @@ class Body extends React.Component {
 	render() {
 
         let s = this.nameScheduleTime(this.state.classList)
-        
 		return (
 			<div class="body row ">
 				<ClassListContainer
+                    groupList={this.state.groupList}
 					classList={this.state.classList}
 					handleSubmit={this.handleSubmit}
 					handleDelete={this.handleDelete}
@@ -451,14 +465,15 @@ class Leftbar extends React.Component {
 		return (
 			<div class="col-1 side-bar">
 				<a
-					class="btn btn-outline-primary"
+					class="btn btn-outline-primary active1"
 					href="main.html"
 					role="button"
+                    
 				>
 					<i class="bi bi-house "></i>
 				</a>
 				<a
-					class="btn btn-outline-primary active1"
+					class="btn btn-outline-primary "
 					href="setting.html"
 					role="button"
 				>
