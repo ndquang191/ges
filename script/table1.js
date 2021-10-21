@@ -326,7 +326,7 @@ class RightBar extends React.Component {
 
 class Body extends React.Component {
 	state = {
-		classList: [],
+		classList: ["TOAN-2"],
 		showTime: false,
 
 		scheduleTime: [

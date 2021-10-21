@@ -183,6 +183,7 @@ class TableRow extends React.Component {
 
 class TableBody extends React.Component {
 	render() {
+        console.log(this.props.scheduleTime);
 		return (
 			<tbody>
 				{this.props.scheduleTime.map((lession, index) => (
@@ -200,6 +201,7 @@ class TableBody extends React.Component {
 
 class Table extends React.Component {
 	render() {
+        console.log(this.props.scheduleTime);
 		return (
 			<div class="col-8">
 				<div id="table" class="table">
@@ -376,7 +378,7 @@ class Body extends React.Component {
 		showTime: false,
 		groupList: ["Nhóm CNPM", "Phòng ktx", "SV tình nguyện"],
 		scheduleTime: [
-			[, , , , , , ,],
+			[0,0,0,0,0,0,0],
 			[, , , , , , ,],
 			[, , , , , , ,],
 			[, , , , , , ,],
