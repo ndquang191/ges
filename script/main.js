@@ -183,6 +183,8 @@ class TableRow extends React.Component {
 
 class TableBody extends React.Component {
 	render() {
+
+        console.log(this.props.scheduleTime);
 		return (
 			<tbody>
 				{this.props.scheduleTime.map((lession, index) => (
@@ -376,7 +378,7 @@ class Body extends React.Component {
 		showTime: false,
 		groupList: ["Nhóm CNPM", "Phòng ktx", "SV tình nguyện"],
 		scheduleTime: [
-			["","","","","","",""],
+			[" "," "," "," "," "," "," "],
 			["","","","","","",""],
 			["","","","","","",""],
 			["","","","","","",""],
@@ -460,6 +462,7 @@ class Body extends React.Component {
 		this.state.classList = JSON.parse(localStorage.getItem("classList"));
 
 		let s = JSON.parse(localStorage.getItem("schedule"));
+        console.log(s);
 		return (
 			<div class="body row ">
 				<ClassListContainer
