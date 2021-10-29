@@ -42,7 +42,6 @@ function check(){
     let user = document.getElementById("username").value;
     let pw = document.getElementById("password").value;
 
-
     account = JSON.parse( localStorage.getItem("account"))
 
     console.log(account);
