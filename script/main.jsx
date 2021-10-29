@@ -33,6 +33,23 @@ let classes = [
 			[0, 0, 1, 0, 0, 0, 0],
 		],
 	},
+	{
+		id: "KTMT-1",
+		schedule: [
+			[1, 0, 0, 0, 0, 0, 0],
+			[1, 0, 0, 0, 0, 0, 0],
+			[1, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 1, 0, 0, 0, 0],
+			[0, 0, 1, 0, 0, 0, 0],
+			[0, 0, 1, 0, 0, 0, 0],
+		],
+	},
 
 	{
 		id: "TOAN-2",
@@ -273,31 +290,50 @@ class Table extends React.Component {
 	}
 }
 
-const Memberlist = ({ groupName, member, addMember, checkedMember }) => {
+const Memberlist = ({
+	groupName,
+	member,
+	addMember,
+	checkedMember,
+	newMember,
+	newId,
+	handleChange,
+	deleteMember,
+}) => {
 	return (
 		<div className="member-list" id={groupName}>
 			{member.map(({ id, name, checked }) => {
 				return (
 					<button className="col-12 member text-center btn btn-outline-primary">
-						<input
-							type="checkbox"
-							onChange={() =>
-								checkedMember(name, groupName)
-							}
-						></input>
+						<input type="checkbox" onChange={() => checkedMember(name, groupName)}></input>
 						{name}
+
+						<button
+							id="deleteMember"
+							class="btn btn-outline-primary deleteMember"
+							onClick={() => deleteMember(name, groupName)}
+						></button>
 					</button>
 				);
 			})}
 
-			<form className="add-member" onSubmit={(e) => addMember(e)}>
+			<form className="add-member" onSubmit={(e) => addMember(e, groupName)}>
 				<div class="row">
-					<input type="text" id="member-name" class="col-5" />
-					<input type="number" id="member-id" class="col-3" />
-					<button
-						type="submit"
-						className="col-3 btn btn-outline-primary"
-					>
+					<input
+						type="text"
+						name="newMember"
+						class="col-5"
+						onChange={handleChange}
+						value={newMember}
+					/>
+					<input
+						type="number"
+						name="newId"
+						class="col-3"
+						onChange={handleChange}
+						value={newId}
+					/>
+					<button type="submit" className="col-3 btn btn-outline-primary">
 						+
 					</button>
 				</div>
@@ -312,6 +348,10 @@ const ClassComponent = ({
 	member,
 	checkedMember,
 	addMember,
+	newMember,
+	newId,
+	handleChange,
+	deleteMember,
 }) => {
 	return (
 		<div>
@@ -328,6 +368,10 @@ const ClassComponent = ({
 				member={member}
 				groupName={groupName}
 				checkedMember={checkedMember}
+				newMember={newMember}
+				newId={newId}
+				handleChange={handleChange}
+				deleteMember={deleteMember}
 			/>
 		</div>
 	);
@@ -337,10 +381,7 @@ class ClassListContainer extends React.Component {
 	render() {
 		return (
 			<div class="col-3">
-				<GroupNav
-					handleSubmit={this.props.handleSubmit}
-					openMenu={this.props.openMenu}
-				/>
+				<GroupNav handleSubmit={this.props.handleSubmit} openMenu={this.props.openMenu} />
 				<div id="cls-list" className="cls-list">
 					<div class="row">
 						{this.props.groupList.map((group) => (
@@ -351,6 +392,10 @@ class ClassListContainer extends React.Component {
 								handleDelete={this.props.handleDelete}
 								member={group.member}
 								checkedMember={this.props.checkedMember}
+								newMember={this.props.newMember}
+								newId={this.props.newId}
+								handleChange={this.props.handleChange}
+								deleteMember={this.props.deleteMember}
 							/>
 						))}
 					</div>
@@ -365,10 +410,7 @@ class GroupNav extends React.Component {
 		return (
 			<div class="group-nav row">
 				<button class="col btn btn-outline-primary">Del</button>
-				<button
-					class="col btn btn-outline-primary mid"
-					onClick={this.props.openMenu}
-				>
+				<button class="col btn btn-outline-primary mid" onClick={this.props.openMenu}>
 					Home
 				</button>
 				<button
@@ -390,10 +432,7 @@ class GroupNav extends React.Component {
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5
-									class="modal-title"
-									id="exampleModalLabel"
-								>
+								<h5 class="modal-title" id="exampleModalLabel">
 									Name your new group
 								</h5>
 
@@ -405,10 +444,7 @@ class GroupNav extends React.Component {
 								></button>
 							</div>
 							<div class="modal-body">
-								<form
-									class="search-box"
-									onSubmit={this.props.handleSubmit}
-								>
+								<form class="search-box" onSubmit={this.props.handleSubmit}>
 									<input
 										class="search-txt"
 										type="text"
@@ -436,22 +472,131 @@ class GroupNav extends React.Component {
 
 class RightBar extends React.Component {
 
+
+	state = {
+		day : "",
+		time : "",
+		todo : "",
+		todoList : [],
+	}
+
+	componentDidMount = () => {
+		this.state.todoList = JSON.parse(localStorage.getItem("todoList"))
+		
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			[e.target.name] : e.target.value
+		})
+	}
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+	
+		let newTodo = {
+			day : this.state.day,
+			time : this.state.time,
+			todo : this.state.todo,
+			all : this.props.all
+		}
+		console.log(newTodo);
+
+		this.state.todoList.push(newTodo)
+
+		console.log(this.state);
+		localStorage.setItem("todoList" , JSON.stringify(this.state.todoList) )
+	}
+
+		
+
+
 	render() {
 		return (
 			<div class="col-1 r-col">
 				<button
-					onClick={this.props.changeShowFree}
 					class="btn btn-outline-primary"
 					id="free"
+					data-bs-toggle="modal"
+					data-bs-target="#note"
+					data-bs-whatever="@mdo"
 				>
-					Free Time
+					note
 				</button>
-				<button
-					class="btn btn-outline-primary"
-					id="same"
+
+				<div
+					class="modal fade"
+					id="note"
+					tabindex="-1"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
 				>
-					Same Class
-				</button>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									New
+								</h5>
+							</div>
+							<div class="modal-body">
+								<form class="todo-form" onSubmit={this.handleSubmit}>
+									<select
+										id="most-like"
+										name="day"
+										class="form-control"
+										required
+										onChange={this.handleChange}
+									>
+										<option disabled selected value>
+											Chọn ngày
+										</option>
+										<option value="Thứ 2">Thứ 2</option>
+										<option value="Thứ 3">Thứ 3</option>
+										<option value="Thứ 4">Thứ 4</option>
+										<option value="Thứ 5">Thứ 5</option>
+										<option value="Thứ 6">Thứ 6</option>
+										<option value="Thứ 7">Thứ 7</option>
+										<option value="Chủ Nhật">Chủ nhật</option>
+									</select>
+
+									<select
+										id="most-like"
+										name="time"
+										class="form-control"
+										required
+										onChange={this.handleChange}
+
+									>
+										<option disabled selected value>
+											Chọn giờ
+										</option>
+										<option value="Tiết 1">Tiết 1</option>
+										<option value="Tiết 2">Tiết 2</option>
+										<option value="Tiết 3">Tiết 3</option>
+										<option value="Tiết 4">Tiết 4</option>
+										<option value="Tiết 5">Tiết 5</option>
+										<option value="Tiết 6">Tiết 6</option>
+										<option value="Tiết 7">Tiết 7</option>
+										<option value="Tiết 8">Tiết 8</option>
+										<option value="Tiết 9">Tiết 9</option>
+										<option value="Tiết 10">Tiết 10</option>
+										<option value="Tiết 11">Tiết 11</option>
+										<option value="Tiết 12">Tiết 11</option>
+									</select>
+
+									<textarea
+										id="todo"
+										class="input-textarea"
+										name="todo"
+										onChange={this.handleChange}
+									></textarea>
+
+									<button class="btn btn-outline-primary saveTodo">Save</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -461,8 +606,6 @@ class Body extends React.Component {
 	state = {
 		classList: ["TOAN-1", "TOAN-2", "CNPM-1"],
 		showTime: false,
-		showSame: false,
-		showFree: false,
 		groupList: [
 			{
 				groupName: "KTX",
@@ -516,7 +659,10 @@ class Body extends React.Component {
 			["", "", "", "", "", "", ""],
 			["", "", "", "", "", "", ""],
 		],
+		newMember: "",
+		newId: "",
 	};
+	handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
 	componentDidUpdate = () => {
 		let groupList = this.state.groupList;
@@ -547,10 +693,7 @@ class Body extends React.Component {
 				for (let row in ar) {
 					for (let cell = 0; cell < 7; cell++) {
 						if (ar[row][cell] == 1) {
-							if (
-								schedule[row][cell] == 0 ||
-								schedule[row][cell] == list[i]
-							) {
+							if (schedule[row][cell] == 0 || schedule[row][cell] == list[i]) {
 								schedule[row][cell] = list[i];
 							} else {
 								schedule[row][cell] = 3;
@@ -586,27 +729,49 @@ class Body extends React.Component {
 		return schedule;
 	};
 
-	changeShowFree = () => {
+	deleteMember = (name, groupName) => {
+		let groupL = this.state.groupList;
+		let group = groupL.find((i) => i.groupName == groupName);
 
-		let s = !this.state.showFree
+		let a = group.member.filter((i) => i.name != name);
+		group.member = a;
+		console.log(group.member);
 		this.setState({
-			showFree : s
+			groupList: groupL,
 		});
 
-		console.log("haha");
-
-		if(this.state.showFree == true){
-
-			let cells = Array.from(document.getElementById("cell"))
-
-			console.log(cells);
-		}
+		console.log("hah");
 	};
 
-
-	// Cần hoàn thiện chỗ nyaf
-	addMember = (e) => {
+	addMember = (e, groupName) => {
 		e.preventDefault();
+		console.log(groupName);
+
+		let check = user.indexOf((i) => i.id == this.state.newId);
+
+		if (check > -1) {
+			alert("Nhap sai thong tin roi ban oiii");
+		} else {
+			let found = user.find((i) => i.id == this.state.newId);
+			console.log(found);
+			console.log(found.name);
+			if (found.name != this.state.newMember) {
+				alert("Nhap sai ten roi ban oiii");
+			} else {
+				let groupL = this.state.groupList;
+				let group = groupL.find((i) => (i.groupName = groupName));
+
+				group.member.push({
+					id: found.id,
+					name: found.name,
+					checked: false,
+				});
+
+				this.setState({
+					groupList: groupL,
+				});
+			}
+		}
 	};
 
 	openMenu = () => {
@@ -616,9 +781,7 @@ class Body extends React.Component {
 			arr[i].style.display = "block";
 		}
 
-		let group = Array.from(
-			document.getElementsByClassName("member-list")
-		);
+		let group = Array.from(document.getElementsByClassName("member-list"));
 
 		for (let i = 0; i < arr.length; i++) {
 			group[i].style.display = "none";
@@ -641,9 +804,7 @@ class Body extends React.Component {
 			const groupList = [...prev.groupList];
 
 			const i = groupList.findIndex((i) => i.groupName === groupName);
-			const index = groupList[i].member.findIndex(
-				(i) => i.name === name
-			);
+			const index = groupList[i].member.findIndex((i) => i.name === name);
 
 			let mem = groupList[i].member[index];
 
@@ -658,9 +819,7 @@ class Body extends React.Component {
 	};
 
 	handleDelete = (nameClass) => {
-		const newClassList = this.state.classList.filter(
-			(x) => x != nameClass
-		);
+		const newClassList = this.state.classList.filter((x) => x != nameClass);
 
 		this.setState({
 			classList: newClassList,
@@ -685,16 +844,36 @@ class Body extends React.Component {
 		});
 	};
 
+	allMember = () => {
+
+		let a = []
+		let groupList = this.state.groupList
+		groupList.forEach( (group) =>{
+			group.member.forEach((member) => {
+				if (member.checked == true){
+					a.push(member.name)
+				}
+			})
+		})
+		return a
+	}
+
 	render() {
 		this.state.classList = JSON.parse(localStorage.getItem("classList"));
 
 		let s = JSON.parse(localStorage.getItem("schedule"));
 
 		let colorCode = this.componentDidUpdate();
+
+		let all = this.allMember();
+
+
 		return (
 			<div class="body row ">
 				<ClassListContainer
 					addMember={this.addMember}
+					newMember={this.state.newMember}
+					newId={this.state.newId}
 					openMenu={this.openMenu}
 					openGroup={this.openGroup}
 					groupList={this.state.groupList}
@@ -702,6 +881,8 @@ class Body extends React.Component {
 					handleSubmit={this.handleSubmit}
 					handleDelete={this.handleDelete}
 					checkedMember={this.checkedMember}
+					handleChange={this.handleChange}
+					deleteMember={this.deleteMember}
 				/>
 
 				<Table
@@ -710,9 +891,7 @@ class Body extends React.Component {
 					showTime={this.state.showTime}
 					colorCode={colorCode}
 				/>
-				<RightBar
-					changeShowFree={this.changeShowFree}
-				/>
+				<RightBar all={all} />
 			</div>
 		);
 	}
@@ -748,6 +927,14 @@ class Leftbar extends React.Component {
 					role="button"
 				>
 					<i class="bi bi-gear "></i>
+				</a>
+
+				<a
+					class="btn btn-outline-primary"
+					href="note.html"
+					role="button"
+				>
+					<i class="bi bi-card-text"></i>
 				</a>
 			</div>
 		);

@@ -71,6 +71,8 @@ body {
 
 .main-container {
 	border: solid 2px var(--color-1);
+	width: 1400px !important;
+	height: 700px;
 }
 
 .banner {
@@ -86,115 +88,36 @@ body {
 
 /* left-column */
 
-.group-nav .btn {
-	margin-right: 15px;
-	margin-left: 15px;
-}
-
-.btn.mid {
-	width: 100px !important;
-}
-
-input {
-	padding-left: 10px;
-	width: 250px;
-	height: 40px;
-	border: 2px solid var(--color-1);
-	vertical-align: middle;
-	margin-right: 10px;
-}
-
-.cls-list {
-	position: relative;
-	align-items: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	background-color: var(--color-2);
-	width: 350px;
-	height: 520px;
-	border: solid 4px var(--color-1);
-	padding: 10px;
-}
-.class{
-	display: none;
-}
-
-.class.btn {
-	margin-bottom: 10px !important;
-}
-
-.member-list{
-	display : none ;
-
-}
-
-.member{
-	position: relative;
-	margin-bottom: 10px;
-	height: 50px;
-}
-
-.member input{
-	position: absolute;
-	left: 10px;
-	width: 20px;
-	height: 20px;
-}
-
-.add-member {
-	padding: 10px;
-}
-.add-member input{
-	margin-left: 5px;
-	margin-right: 5px;
-}
-
-.add-member .btn{
-	height: 40px !important;
-	text-align: center;
-	line-height: 100%;
-}
-
-
-
 /* Table */
 
 table {
+	width: 100%;
 	text-align: center;
 	border-collapse: collapse;
 	border: 3px solid var(--color-1);
+	margin-bottom: 20px;
 }
 
 th {
-	width: 120px !important;
 	height: 45px;
 	border-collapse: collapse;
 	border: 2px solid var(--color-1);
 }
 
 td {
-	width: auto;
 	height: 45px;
 	border-collapse: collapse;
 	border: 1px solid red;
 }
 
-/* right-col */
-
-.r-col .btn {
-	margin-bottom: 20px;
-	width: 80px;
-	height: 80px;
+.first-col {
+	width: 220px !important;
+}
+.second-col {
+	width: 220px !important;
 }
 
-.F{
-	background-color: #d8afc6;
-}
-
-.S{
-	background-color: #86A8E7;
-}
-
-.normal{
-	background-color:var(--color-2) !important;
+.forth-col{
+	width: 300px !important;
+	text-align: center;
 }
